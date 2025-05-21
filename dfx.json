@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "ExercicioCoin_backend": {
+      "main": "src/ExercicioCoin_backend/main.mo",
+      "type": "motoko"
+    },
+    "ExercicioCoin_frontend": {
+      "dependencies": [
+        "ExercicioCoin_backend"
+      ],
+      "source": [
+        "src/ExercicioCoin_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "ExercicioCoin_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
