@@ -1,4 +1,4 @@
-import { ExercicioCoin } from 'declarations/ExercicioCoin_backend';
+import { ExercicioCoin_backend } from 'declarations/ExercicioCoin_backend';
 import { ExercicioCoin_icrc1_ledger_canister } from 'declarations/ExercicioCoin_icrc1_ledger_canister';
 import React, { useState, useEffect } from 'react';
 import { HttpAgent, Actor } from "@dfinity/agent";
@@ -79,7 +79,7 @@ function TransferForm() {
           /* Redireciona para o provedor de identidade da ICP (Internet Identity).
              Neste caso a autenticação será realizada em ambiente Local.
           */
-          identityProvider: `http://${({}).CANISTER_ID_INTERNET_IDENTITY}.localhost:4943`,        
+          identityProvider: `http://${process.env.CANISTER_ID_INTERNET_IDENTITY}.localhost:4943`,
           //identityProvider: "https://identity.ic0.app/#authorize", // Este código deverá ser utilizado apenas em caso de deploy em mainnet ou playgroud
 
           onSuccess: async () => {  
@@ -170,7 +170,7 @@ function TransferForm() {
         /* Executa a função transferFrom no backend para realizar a transferência.
            A operação será concluída apenas se a aprovação prévia tiver sido bem-sucedida e se a conta de origem possuir
            saldo igual ou superior a quantidade aprovada. */
-        const result = await _backend.transferFrom(Principal.fromText(to), BigInt(amount)); // esta operação consome 10000 tokens (operação de aprovação e transferencia juntas custam 20000)
+        const result = await ExercicioCoin_backend.transferFrom(Principal.fromText(to), BigInt(amount)); // esta operação consome 10000 tokens (operação de aprovação e transferencia juntas custam 20000)
        
         // Processa o resultado
         if ('ok' in result) {            
